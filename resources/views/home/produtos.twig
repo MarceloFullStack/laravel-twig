@@ -1,5 +1,6 @@
 {% extends "base" %}
 
+
 {% block content %}
 
 <div class="container my-5">
@@ -10,19 +11,21 @@
     
     <!-- Section heading -->
     <h3 class="font-weight-bold mb-4 pb-2">Os melhores preços</h3>
+    <h3 class="font-weight-bold mb-4 pb-2"></h3>
     <!-- Section description -->
-    <p class="grey-text w-responsive mx-auto mb-5">CADASTRAR</p>
-    <p class="btn"><a type='buton'>CADASTRAR</a></p>
+    {# <p class="grey-text w-responsive mx-auto mb-5">CADASTRAR</p> #}
+    <p class="btn"><a href="{{route('produtos.create')}}" type='button'>CADASTRAR</a></p>
 
   	<!-- produto -->
     <div class="row">
-
-      {# #DAQUI################# #}
-      <div class="col-lg-3 col-md-6 mb-4">
+ {# diferente do blade, o twig não tem foreach, por ese motivo é necessário usar o for, sua logica é, primeiro o nome da variavel, vc escolher qualuqer um, e de onde vem #}
+      {% for produtos in data %}
+        {# #DAQUI#################  #}
+      <div class="col-lg-3 col-md-6 mb-4 mt-5">
          <div><div class="card card-cascade narrower card-ecommerce">
           <!-- Card image -->
           <div class="view view-cascade overlay">
-            <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/1.jpg" class="card-img-top"
+            <img src="{{ produtos.foto }}" class="card-img-top"
               alt="sample photo">
             <a>
               <div class="mask rgba-white-slight"></div>
@@ -34,32 +37,41 @@
             <!-- Title -->
             <h5 class="card-title mb-1">
               <strong>
-                <a href="">_Stitulo do produto</a>
+                <a href="">{{ produtos.titulo }}</a>
               </strong>
             </h5>
             </div>
             <!-- Description -->
-            <p class="card-text">_SDescrição do produto
+            <p class="card-text">{{ produtos.descricao }}
             </p>
             <!-- Card footer -->
             <div class="card-footer px-1">
               <span class="float-left font-weight-bold">
-                <strong>_S$Rs preço</strong>
+                <strong>{{ produtos.preco }}</strong>
               </span>
               <span class="float-right">
-                <a class="material-tooltip-main" data-toggle="tooltip" data-placement="top" title="Add to Cart">
-                  <i class="fas fa-shopping-cart grey-text ml-3"></i>
+                <a  href="{{route('produtos.show', [ produtos.id])}}" class="material-tooltip-main" data-toggle="tooltip" data-placement="top" title="ver produto">
+                  <i class="fas fa-eye blue-text ml-3"></i>
                 </a>
-                {# <a class="material-tooltip-main" data-toggle="tooltip" data-placement="top" title="Add to Wishlist">
-                  <i class="fas fa-heart grey-text ml-3"></i>
-                </a> #}
+                 <a href="{{route('produtos.edit', [ produtos.id])}}" class="material-tooltip-main" data-toggle="tooltip" data-placement="top" title="editar produto">
+                  <form id="delete" style="#" action="{{route('produtos.destroy', produtos)}}" method="post">
+                  {{ csrf_field() }}
+                  {{ method_field('DELETE') }}
+                  <button type="submit"  class="material-tooltip-main"  data-toggle="tooltip" data-placement="top" title="Deletar" ><i class="fas fas fa-trash red-text ml-3"></i></button>
+
+                  </form>
+                  <i class="fas fa-pen yellow-text ml-3"></i>
+                </a> 
+                  
+                  
+          
               </span>
             </div>
             </div>
         </div>
         </div> 
-      {# #DAQUI################# #}
-     
+      {# {# #DAQUI################# #}
+      {% endfor %}
      
      </div>
 
@@ -77,3 +89,4 @@ $(function () {
 </script>
 
 {% endblock %}
+

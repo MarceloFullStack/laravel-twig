@@ -18,10 +18,8 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', function () {
-    $teste = [
-        'nome' => 'Marcelo',
-        'idade' =>36
-    ];
-    return View::make('home.produtos', $teste);
-});
+// Route::get('/', function () {
+    
+// });
+
+Route::resource('produtos', 'ProdutosController');

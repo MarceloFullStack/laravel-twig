@@ -1,0 +1,44 @@
+{% extends "base" %}
+{% block content %}
+
+<div class="container">
+   <div class="card">
+   <div class="card-body">
+    	<!-- Formulário simples -->
+	<form action="{{route('produtos.update', produto)}}" method="post">
+    <p class="h4 text-center py-4">Edite seu produto</p>
+		{{ csrf_field() }}
+        {{ method_field('PUT') }}
+		<div class="md-form">
+        <i class="fa fa-user prefix grey-text"></i>
+		<input class="form-control" id="titulo" type="text" name="titulo" value="{{produto.titulo}}">
+        <label for="titulo">Titulo:</label>
+        </div>
+		
+        <div class="md-form">
+        <i class="fa fa-user prefix grey-text"></i>
+        <label for="descricao">descrição:</label>
+		<input class="form-control" id="descricao" type="text" name="descricao" value="{{produto.descricao}}">
+        </div>
+
+        <div class="md-form">
+        <i class="fa fa-user prefix grey-text"></i>
+		<label for="foto">foto:</label>
+		<input class="form-control" id="foto" type="text" name="foto" value="{{produto.foto}}">
+        </div>
+
+        <div class="md-form">
+        <i class="fa fa-user prefix grey-text"></i>
+		<label for="preco">preço:</label>
+		<input class="form-control" id="preco" type="text" name="preco" value="{{produto.preco}}">
+        </div>
+
+        <div class="text-center py-4 mt-3">
+		<input class="btn btn-cyan" type="submit" value="Editar">
+        </div>
+	</form>
+   </div>
+   </div>
+</div>
+
+{% endblock %}

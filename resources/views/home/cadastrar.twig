@@ -1,20 +1,23 @@
 {% extends "base" %}
 
 {% block content %}
-<!-- Formulário simples -->
-<form action="" method="post">
-  <label for="titulo">Titulo:</label>
-  <input id="titulo" type="text" name="name">
-  
-  <label for="titulo">descrição:</label>
-  <input id="titulo" type="text" name="name">
-  
-  <label for="titulo">preço:</label>
-  <input id="titulo" type="text" name="name">
-  
-  
-  <input type="submit" value="Save">
-</form>
+	<!-- Formulário simples -->
+	<form action="{{route('produtos.store')}}" method="post">
+		{{ csrf_field() }}
+		
+    <label for="titulo">Titulo:</label>
+		<input id="titulo" type="text" name="titulo">
+
+		<label for="descricao">descrição:</label>
+		<input id="descricao" type="text" name="descricao">
+
+		<label for="foto">foto:</label>
+		<input id="foto" type="text" name="foto">
+
+		<label for="preco">preço:</label>
+		<input id="preco" type="text" name="preco">
+
+
+		<input type="submit" value="Cadastrar">
+	</form>
 {% endblock %}
-
-
